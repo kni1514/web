@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="do_it documentation: setup, browser connection, usage, tools, and project structure.">
+  <title>Documentation — do_it</title>
+  <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="loader" class="loader" aria-hidden="true">
+    <div class="loader__content">
+      <img src="assets/images/logo.svg" alt="" class="loader__logo" width="72" height="72">
+      <div class="loader__spinner"></div>
+      <p class="loader__text">Loading do_it</p>
+    </div>
+  </div>
+  <canvas id="particles" aria-hidden="true"></canvas>
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress__bar" id="scrollProgress"></div></div>
+
+  <header class="header" id="header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a href="index.html" class="nav__brand">
+        <img src="assets/images/logo.svg" alt="do_it logo" width="36" height="36">
+        <span class="gradient-text">do_it</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__menu" id="navMenu">
+        <li><a href="features.html" class="nav__link">Features</a></li>
+        <li><a href="docs.html" class="nav__link active">Docs</a></li>
+        <li><a href="faq.html" class="nav__link">FAQ</a></li>
+        <li><a href="about.html" class="nav__link">About</a></li>
+        <li><a href="contact.html" class="nav__link">Contact</a></li>
+        <li class="nav__cta">
+          <a href="download.html" class="btn btn--primary btn--sm ripple">Download</a>
+        </li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode">
+            <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+  <section class="page-hero"><div class="page-hero__orb page-hero__orb--1" aria-hidden="true"></div><div class="page-hero__orb page-hero__orb--2" aria-hidden="true"></div><div class="page-hero__grid" aria-hidden="true"></div><div class="container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="sep">/</span><span>Docs</span></nav><div class="page-hero__badge reveal">Documentation</div><h1 class="reveal"><span class="gradient-text">do_it</span> docs</h1><p class="reveal">Install, connect ChatGPT, and run the terminal agent.</p></div></section>
+  <section class="section"><div class="container"><div class="docs-layout">
+    <aside class="docs-sidebar glass reveal"><h4>On this page</h4><nav><a href="#setup">Quick setup</a><a href="#browser">Browser extension</a><a href="#run">Run do_it</a><a href="#structure">Project structure</a><a href="#tools">Tools</a><a href="#privacy">How it connects</a></nav></aside>
+    <div class="docs-content">
+      <section class="docs-section" id="setup"><h2>Quick setup</h2><p>Requirements: Git, Python 3.10 or newer, and Chrome or Edge with a ChatGPT account.</p><div class="code-block"><pre><code>git clone https://github.com/kni1514/do_it.git
+cd do_it
+python -m pip install -r requirements.txt</code></pre><button class="code-block__copy ripple" data-copy="git clone https://github.com/kni1514/do_it.git
+cd do_it
+python -m pip install -r requirements.txt" aria-label="Copy setup commands">Copy</button></div><p>On Windows, use <code>py</code> instead of <code>python</code> if needed.</p></section>
+      <section class="docs-section" id="browser"><h2>Connect the browser</h2><ol><li>Sign in to ChatGPT in Chrome or Edge.</li><li>Open <code>chrome://extensions</code> or <code>edge://extensions</code>.</li><li>Enable Developer mode, choose <strong>Load unpacked</strong>, and select the cloned repository's <code>ext</code> folder.</li><li>Keep the ChatGPT tab open while you use do_it.</li></ol></section>
+      <section class="docs-section" id="run"><h2>Run do_it</h2><p>Start an interactive session from the repository folder:</p><div class="code-block"><pre><code>python do_it.py</code></pre><button class="code-block__copy ripple" data-copy="python do_it.py" aria-label="Copy run command">Copy</button></div><p>Or pass a single prompt:</p><div class="code-block"><pre><code>python do_it.py "list files in this project"</code></pre><button class="code-block__copy ripple" data-copy='python do_it.py "list files in this project"' aria-label="Copy single prompt command">Copy</button></div><p>The local bridge starts with do_it and closes when the process exits. Enter <code>help</code> for commands or <code>exit</code> to quit.</p></section>
+      <section class="docs-section" id="structure"><h2>Project structure</h2><div class="folder-tree glass"><span class="dir">do_it/</span><br>├── <span class="file">do_it.py</span><br>├── <span class="file">config.py</span><br>├── <span class="file">requirements.txt</span><br>├── <span class="dir">agent/</span><br>│   ├── <span class="file">core.py</span><br>│   ├── <span class="file">llm.py</span><br>│   ├── <span class="file">memory.py</span><br>│   └── <span class="file">tools.py</span><br>├── <span class="dir">ext/</span><br>│   ├── <span class="file">manifest.json</span><br>│   ├── <span class="file">chat.js</span><br>│   └── <span class="file">background.js</span><br>└── <span class="dir">server/</span><br>    └── <span class="file">app.py</span></div><p>Conversation history is saved under <code>~/.do_it/</code>.</p></section>
+      <section class="docs-section" id="tools"><h2>Agent tools</h2><p>do_it can read, write, edit, append, move, copy, and delete files; list folders; search files and the web; inspect file details; update JSON; and run shell commands.</p></section>
+      <section class="docs-section" id="privacy"><h2>How the ChatGPT connection works</h2><p>The extension passes prompts and replies between do_it and your signed-in ChatGPT tab through a local server on your device. The local server starts automatically. When a task uses file or shell tools, relevant results are included in the ChatGPT conversation. Do not ask the agent to handle secrets you do not want sent to ChatGPT.</p></section>
+    </div>
+  </div></div></section>
+  <section class="section section--alt"><div class="container"><div class="cta-banner glass reveal"><h2>Start using <span class="gradient-text">do_it</span></h2><p>Clone the repository and follow the setup guide.</p><a href="install.html" class="btn btn--primary btn--lg ripple">Setup guide</a></div></div></section>
+</main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div>
+          <div class="footer__brand">
+            <img src="assets/images/logo.svg" alt="" width="36" height="36">
+            <div><strong>do_it</strong><p>By Niranjan Kumar K · KNI-ORG</p></div>
+          </div>
+          <p class="footer__desc">A Terminal AI Coding Agent.</p>
+        </div>
+        <div>
+          <h4 class="footer__heading">Product</h4>
+          <div class="footer__links">
+            <a href="download.html">Download</a>
+            <a href="install.html">Installation</a>
+            <a href="features.html">Features</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__heading">Resources</h4>
+          <div class="footer__links">
+            <a href="docs.html">Documentation</a>
+            <a href="faq.html">FAQ</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>&copy; 2026 Niranjan Kumar K. All rights reserved. do_it is open source (MIT).</p>
+        <div class="footer__socials">
+          <a href="https://github.com/hacker1514" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.395-.135-.345-.72-1.395-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="mailto:hackerenvironment1514@gmail.com" aria-label="Email"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a>
+          <a href="docs.html" aria-label="Documentation"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="18 15 12 9 6 15"/></svg></button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
